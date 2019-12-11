@@ -1,5 +1,5 @@
 from django.db import models
-
+from rest_framework import filters
 #=================__PERSON__===========================
 class Person(models.Model):
     fname = models.CharField(max_length=30)
@@ -24,7 +24,7 @@ class Location(models.Model):
         return self.location
 
 #=================__DIVECE_TYPE__========================
-class TypeDivece(models.Model):
+class TypeDevice(models.Model):
     dtype = models.CharField(max_length=50) 
 
     class Meta:
@@ -34,18 +34,19 @@ class TypeDivece(models.Model):
     def __str__(self):
         return self.dtype
 
-
 #=================__DIVECE__=========================
 class Device(models.Model):
     inventory_number = models.CharField(max_length=30)
     person_id = models.ForeignKey(Person, on_delete=models.PROTECT)
-    type_id = models.ForeignKey(TypeDivece, on_delete=models.PROTECT)
+    type_id = models.ForeignKey(TypeDevice, on_delete=models.PROTECT)
     location_id = models.ForeignKey(Location, on_delete=models.PROTECT)
 
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['inventory_number', 'person_id']
+    
     class Meta:
         verbose_name = 'Device'
-        verbose_name_plural = 'Devices'
-       
+        verbose_name_plural = 'Devices'       
 
     def __str__(self):
         return self.inventory_number
