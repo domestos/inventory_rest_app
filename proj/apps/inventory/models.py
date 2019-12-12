@@ -15,7 +15,6 @@ class Person(models.Model):
 #=================__LOCATION__=========================
 class Location(models.Model):
     location = models.CharField(max_length=50)
-
     class Meta:
         verbose_name = 'Location'
         verbose_name_plural = 'Locations'
@@ -26,7 +25,6 @@ class Location(models.Model):
 #=================__DIVECE_TYPE__========================
 class TypeDevice(models.Model):
     dtype = models.CharField(max_length=50) 
-
     class Meta:
         verbose_name = 'Type of Divece'
         verbose_name_plural = 'Type of Diveces'
@@ -40,10 +38,6 @@ class Device(models.Model):
     person_id = models.ForeignKey(Person, on_delete=models.PROTECT)
     type_id = models.ForeignKey(TypeDevice, on_delete=models.PROTECT)
     location_id = models.ForeignKey(Location, on_delete=models.PROTECT)
-
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['inventory_number', 'person_id']
-    
     class Meta:
         verbose_name = 'Device'
         verbose_name_plural = 'Devices'       

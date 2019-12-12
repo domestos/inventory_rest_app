@@ -19,7 +19,7 @@ from django.urls import include
 from django.conf.urls import url
 # import the router of API requests 
 from apps.inventory.api.v1.router import router as api_inventory
-
+from apps.inventory.api.v2.router import router as api_inventory_v2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('inventory/', include('apps.inventory.urls')),  
     # redircet api request to router 
     path('api/v1/inventory/', include(api_inventory.urls)),
+    path('api/v2/inventory/', include(api_inventory_v2.urls)),
     # rest web auth
     url(r'^api-auth/', include('rest_framework.urls',namespace='rest_framework'))
 ]
