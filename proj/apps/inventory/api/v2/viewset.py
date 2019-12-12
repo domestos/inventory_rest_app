@@ -5,15 +5,11 @@ from apps.inventory.models import Person, Location, TypeDevice, Device
 from .serializers import PersonSerializers, LocationSerializer, TypeDeviceSerializer, DiveceSerializer
 
 #=================__PERSON__===========================
-
-
 class PersonViewSet(generics.ListAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializers
 
 #=================__LOCATION__=========================
-
-
 class LocationViewSet(generics.ListAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
