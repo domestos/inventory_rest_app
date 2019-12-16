@@ -16,13 +16,16 @@ class PersonSerializers(serializers.Serializer):
         return instance
 
 #=================__LOCATION__=========================
-class LocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Location
-        fields = (
-            'id',
-            'location'
-        )
+class LocationSerializer(serializers.Serializer):
+    location = serializers.CharField()
+    
+    def create(self, validated_data):
+        return Location.objects.create(**validated_data)
+
+    def update(self,  instance, validated_data):
+        instance.location = validated_data.get('location', instance.location)
+        instance.save()
+        return instance
 
 #=================__DIVECE_TYPE__========================
 class TypeDeviceSerializer(serializers.ModelSerializer):
@@ -35,7 +38,7 @@ class TypeDeviceSerializer(serializers.ModelSerializer):
 
 
 #=================__DIVECE__============================
-class DiveceSerializer(serializers.ModelSerializer):
+class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = (
