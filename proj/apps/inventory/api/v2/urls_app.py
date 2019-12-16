@@ -12,6 +12,6 @@ urlpatterns = [
     path('type_device', TypeDeviceViewSet.as_view()),
     path('type_device/<int:pk>', TypeDeviceViewSet.as_view()),
 
-    # path('device', DeviceViewSet.as_view()),
+    path('device', DeviceViewSet.as_view()),
     path('device/<int:pk>/', DeviceViewSet.as_view()),
 ]
