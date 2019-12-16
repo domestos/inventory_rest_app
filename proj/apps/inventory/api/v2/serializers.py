@@ -2,15 +2,19 @@ from rest_framework import serializers
 from apps.inventory.models import Person, Location, TypeDevice, Device
 
 #=================__PERSON__===========================
-class PersonSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = Person
-        fields = (
-            'id',
-            'fname',
-            'sname'
-        )
+class PersonSerializers(serializers.Serializer):  
+    fname = serializers.CharField(max_length=50)
+    sname = serializers.CharField()
     
+    def create(self, validated_data):
+        return Person.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.fname = validated_data.get('fname', instance.fname)
+        instance.sname = validated_data.get('sname', instance.sname)
+        instance.save()
+        return instance
+
 #=================__LOCATION__=========================
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:

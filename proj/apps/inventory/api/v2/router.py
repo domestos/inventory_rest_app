@@ -9,3 +9,12 @@ router.register('person', PersonViewSet)
 router.register('location', LocationViewSet)
 router.register('type', TypeDeviceViewSet)
 router.register('device', DiveceViewSet)
+
+
+# from django.urls import path
+# from .viewset import PersonViewSet
+# app_name = "inventory"
+# # app_name will help us do a reverse look-up latter.
+# urlpatterns = [
+#     path('articles/', PersonViewSet.as_view()),
+# ]
