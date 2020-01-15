@@ -25,7 +25,7 @@ SECRET_KEY = 'd=0%&&oxk3a(&@u3sg%2u1d8$-&m+w*fb0l3j(q7@v%y4sj&yt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,9 +42,14 @@ INSTALLED_APPS = [
     'bootstrapform',   
     'apps.home',
     'apps.inventory',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +59,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+CORS_ORIGIN_ALLOW_ALL= True
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
